@@ -1,5 +1,6 @@
 import 'dotenv/config';
-import { App, ExpressReceiver } from "@slack/bolt";
+import Bolt from "@slack/bolt";
+const { App, ExpressReceiver } = Bolt;
 import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
