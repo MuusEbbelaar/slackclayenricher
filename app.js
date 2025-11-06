@@ -51,11 +51,17 @@ bolt.message(async ({ message, client, logger }) => {
     if (!("text" in message)) return;
     if (ALLOWED_CHANNEL && message.channel !== ALLOWED_CHANNEL) return;
 
-    const text = message.text || "";
-    const match = text.match(LI_REGEX);
-    if (!match) return;
+const textRaw = message.text || "";
+const text = textRaw.toLowerCase();
 
-    const liUrl = match[0];
+const match = textRaw.match(LI_REGEX);
+if (!match) return;
+
+// ✅ require keyword "enrich"
+if (!text.includes("enrich")) return;
+
+const liUrl = match[0];
+
 
     // 1) Post placeholder in thread
     const placeholder = await client.chat.postMessage({
